@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import Content, { HTMLContent } from '../components/Content';
 
-export const BlogPostTemplate = ({
+export const PortfolioItemTemplate = ({
   content,
   contentComponent,
   description,
@@ -33,18 +33,18 @@ export default props => {
   const { markdownRemark: post } = props.data;
 
   return (
-    <BlogPostTemplate
+    <PortfolioItemTemplate
       content={post.html}
       contentComponent={HTMLContent}
       description={post.frontmatter.description}
-      helmet={<Helmet title={`Blog | ${post.frontmatter.title}`} />}
+      helmet={<Helmet title={`Work | ${post.frontmatter.title}`} />}
       title={post.frontmatter.title}
     />
   );
 };
 
 export const pageQuery = graphql`
-  query BlogPostByID($id: String!) {
+  query PortfolioItemByID($id: String!) {
     markdownRemark(id: { eq: $id }) {
       id
       html
