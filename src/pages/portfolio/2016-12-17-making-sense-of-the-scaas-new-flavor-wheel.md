@@ -3,6 +3,7 @@ templateKey: portfolio-item
 title: Test uys
 date: 2016-12-17T15:04:10.000Z
 description: Test uysguygsuygs.
+image: /img/products-grid2.jpg
 ---
 
 ![flavor wheel](/img/flavor_wheel.jpg)
