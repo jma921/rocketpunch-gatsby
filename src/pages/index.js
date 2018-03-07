@@ -14,6 +14,7 @@ const Image = styled.img`
 `;
 
 const Overlay = styled.div`
+  border: 8px solid #f40;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -22,8 +23,8 @@ const Overlay = styled.div`
   height: 100%;
   width: 100%;
   opacity: 0;
-  transition: 0.5s ease;
-  background-color: #008cba;
+  transition: 0.2s ease;
+  background-color: white; // Overlay background color
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -34,7 +35,7 @@ const Overlay = styled.div`
 `;
 
 const Text = styled.p`
-  color: white;
+  color: black;
   text-align: center;
   font-size: 1.5rem;
 `;
@@ -58,19 +59,21 @@ export default class IndexPage extends React.Component {
               )
               .map(({ node: post }) => (
                 <div className="column is-one-third ">
-                  <div className="card thumb" key={post.id}>
-                    <div className="card-image">
-                      <Container>
-                        <Image
-                          src="https://picsum.photos/1280/960?image=28"
-                          alt="Placeholder image"
-                        />
-                        <Overlay>
-                          <Text>{post.frontmatter.title}</Text>
-                        </Overlay>
-                      </Container>
+                  <Link to={post.fields.slug}>
+                    <div className=" thumb" key={post.id}>
+                      <div className="card-image">
+                        <Container>
+                          <Image
+                            src="https://picsum.photos/1280/960?image=28"
+                            alt="Placeholder image"
+                          />
+                          <Overlay>
+                            <Text>{post.frontmatter.title}</Text>
+                          </Overlay>
+                        </Container>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
                 // <div
                 //   className="content column is-one-third"
@@ -141,7 +144,7 @@ export const pageQuery = graphql`
           }
           frontmatter {
             title
-            thumbnailImage
+
             templateKey
             date(formatString: "MMMM DD, YYYY")
           }
