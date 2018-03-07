@@ -7,6 +7,4 @@ image: /img/arise.jpg
 ---
 ![To be Alabama Hyphen Retreat](/img/tobe.jpg)
 
-# Alabama Hyphen Retreat
-
-We did some stuff and things.
+# We did some stuff
