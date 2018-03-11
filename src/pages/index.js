@@ -88,7 +88,7 @@ export default class IndexPage extends React.Component {
       [name]: value
     });
   };
-  submitForm = async e => {
+  submitForm = e => {
     e.preventDefault();
     this.setState({
       processing: true
