@@ -237,9 +237,7 @@ export default class IndexPage extends React.Component {
                       <div className="card-image">
                         <Container>
                           <Image
-                            src={`${window.location.origin}${
-                              post.frontmatter.image
-                            }`}
+                            src={post.frontmatter.image}
                             alt={post.frontmatter.title}
                           />
                           <Overlay>
