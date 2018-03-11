@@ -11,21 +11,21 @@ import './main.css';
 const testKey = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
 const prodKey = '6Ld3mwcTAAAAAAT8mSIvlxiNOCAaIpVaTkmuIKPK';
 
-const validateRecaptcha = async recaptchaResponse => {
-  return true;
-  // try {
-  //   const response = await axios({
-  //     method: 'get',
-  //     headers: {
-  //       'Access-Control-Allow-Origin': '*'
-  //     },
-  //     url: `https://j01q67wvpg.execute-api.us-east-1.amazonaws.com/dev/validate/${recaptchaResponse}`
-  //   });
-  //   return response.data.success;
-  // } catch (e) {
-  //   console.error(e);
-  // }
-};
+// const validateRecaptcha = async recaptchaResponse => {
+//   return true;
+//   try {
+//     const response = await axios({
+//       method: 'get',
+//       headers: {
+//         'Access-Control-Allow-Origin': '*'
+//       },
+//       url: `https://j01q67wvpg.execute-api.us-east-1.amazonaws.com/dev/validate/${recaptchaResponse}`
+//     });
+//     return response.data.success;
+//   } catch (e) {
+//     console.error(e);
+//   }
+// };
 
 const Container = styled.figure`
   cursor: pointer;
@@ -106,16 +106,16 @@ export default class IndexPage extends React.Component {
       return;
     }
 
-    const gRecaptchaResponse = await validateRecaptcha(recaptchaResponse);
-    if (!gRecaptchaResponse) {
-      this.setState({
-        errorText: 'You are a bot. Go away!',
-        alertError: true,
-        alertVisible: true,
-        processing: false
-      });
-      return;
-    }
+    // const gRecaptchaResponse = await validateRecaptcha(recaptchaResponse);
+    // if (!gRecaptchaResponse) {
+    //   this.setState({
+    //     errorText: 'You are a bot. Go away!',
+    //     alertError: true,
+    //     alertVisible: true,
+    //     processing: false
+    //   });
+    //   return;
+    // }
 
     const { fullName, email, budget, organizationName, overview } = this.state;
 
