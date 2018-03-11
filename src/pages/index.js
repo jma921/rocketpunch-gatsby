@@ -12,29 +12,19 @@ const testKey = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
 const prodKey = '6Ld3mwcTAAAAAAT8mSIvlxiNOCAaIpVaTkmuIKPK';
 
 const validateRecaptcha = async recaptchaResponse => {
-  try {
-    const response = await axios({
-      method: 'get',
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      },
-      url: `https://j01q67wvpg.execute-api.us-east-1.amazonaws.com/dev/validate/${recaptchaResponse}`
-    });
-    return response.data.success;
-  } catch (e) {
-    console.error(e);
-  }
-  // axios({
-  //   method: 'get',
-  //   headers: {
-  //     'Access-Control-Allow-Origin': '*'
-  //   },
-  //   url: `https://j01q67wvpg.execute-api.us-east-1.amazonaws.com/dev/validate/${recaptchaResponse}`
-  // }).then(res => {
-  //   if (res.data.success) {
-  //     return res.data.success;
-  //   }
-  // });
+  return true;
+  // try {
+  //   const response = await axios({
+  //     method: 'get',
+  //     headers: {
+  //       'Access-Control-Allow-Origin': '*'
+  //     },
+  //     url: `https://j01q67wvpg.execute-api.us-east-1.amazonaws.com/dev/validate/${recaptchaResponse}`
+  //   });
+  //   return response.data.success;
+  // } catch (e) {
+  //   console.error(e);
+  // }
 };
 
 const Container = styled.figure`
