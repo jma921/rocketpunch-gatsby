@@ -15,9 +15,9 @@ const validateRecaptcha = async recaptchaResponse => {
   try {
     const response = await axios({
       method: 'get',
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      },
+      // headers: {
+      //   'Access-Control-Allow-Origin': '*'
+      // },
       url: `https://j01q67wvpg.execute-api.us-east-1.amazonaws.com/dev/validate/${recaptchaResponse}`
     });
     return response.data.success;
