@@ -1,6 +1,41 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import styled from 'styled-components';
+import axios from 'axios';
+const designLogo = require('../img/undraw_specs2_2jb3.svg');
+const webLogo = require('../img/undraw_real-time_sync_o57k.svg');
+const rocketLogo = require('../img/undraw_To_the_stars_qhyy.svg');
+
+import './main.css';
+
+const testKey = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
+const prodKey = '6Ld3mwcTAAAAAAT8mSIvlxiNOCAaIpVaTkmuIKPK';
+
+const validateRecaptcha = async recaptchaResponse => {
+  try {
+    const response = await axios({
+      method: 'get',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      },
+      url: `https://j01q67wvpg.execute-api.us-east-1.amazonaws.com/dev/validate/${recaptchaResponse}`
+    });
+    return response.data.success;
+  } catch (e) {
+    console.error(e);
+  }
+  // axios({
+  //   method: 'get',
+  //   headers: {
+  //     'Access-Control-Allow-Origin': '*'
+  //   },
+  //   url: `https://j01q67wvpg.execute-api.us-east-1.amazonaws.com/dev/validate/${recaptchaResponse}`
+  // }).then(res => {
+  //   if (res.data.success) {
+  //     return res.data.success;
+  //   }
+  // });
+};
 
 const Container = styled.figure`
   cursor: pointer;
@@ -37,15 +72,163 @@ const Overlay = styled.div`
 const Text = styled.p`
   color: black;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  font-weight: normal;
 `;
 
 export default class IndexPage extends React.Component {
+  state = {
+    budget: '',
+    email: '',
+    fullName: '',
+    organizationName: '',
+    overview: '',
+    processing: false,
+    alertVisible: false,
+    alertSuccess: false,
+    alertError: false,
+    errorText: ''
+  };
+  handleInputChange = event => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  };
+  submitForm = async e => {
+    e.preventDefault();
+    this.setState({
+      processing: true
+    });
+
+    const recaptchaResponse = grecaptcha.getResponse();
+
+    if (!recaptchaResponse) {
+      this.setState({
+        errorText: 'Please complete the captcha.',
+        alertError: true,
+        alertVisible: true,
+        processing: false
+      });
+      return;
+    }
+
+    const gRecaptchaResponse = await validateRecaptcha(recaptchaResponse);
+    if (!gRecaptchaResponse) {
+      this.setState({
+        errorText: 'You are a bot. Go away!',
+        alertError: true,
+        alertVisible: true,
+        processing: false
+      });
+      return;
+    }
+
+    const { fullName, email, budget, organizationName, overview } = this.state;
+
+    // const validate = validateForm(name, email, message);
+    // if (validate === 'name') {
+    //   this.setState({
+    //     errorMessage: 'Please enter your name.',
+    //     processing: false
+    //   });
+    //   return;
+    // } else if (validate === 'email') {
+    //   this.setState({
+    //     errorMessage: 'Please enter your email.',
+    //     processing: false
+    //   });
+    //   return;
+    // } else if (validate === 'message') {
+    //   this.setState({
+    //     errorMessage: 'Please enter your message.',
+    //     processing: false
+    //   });
+    //   return;
+    // }
+
+    const emailMarkup = `<p><strong>Name</strong>: <i>${fullName}</i></p>
+                         <p><strong>Email</strong>: <i>${email}</i></p>
+                         <p><strong>Organization Name</strong>: <i>${organizationName}</i></p>
+                         <p><strong>Overview</strong>: <i>${overview}</i></p>
+                         <p><strong>Budget</strong>: <i>${budget}</i></p>`;
+
+    const emailObj = {
+      subject: `Contact From ${name}`,
+      email_to: ['jma921@gmail.com'],
+      email_from: 'no-reply@rocketpunchlabs.com',
+      html: emailMarkup
+    };
+
+    axios({
+      method: 'post',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      },
+      url:
+        'https://4ag3is2966.execute-api.us-east-1.amazonaws.com/dev/mail/post',
+      auth: {
+        username: 'jma921',
+        password: '96oxTnVyTULKTT'
+      },
+      data: emailObj
+    })
+      .then(res => {
+        this.resetForm();
+        this.setState({
+          processing: false,
+          alertSuccess: true,
+          alertVisible: true
+        });
+      })
+      .catch(err => {
+        console.log(err);
+        this.setState({ processing: false, error: true });
+      });
+  };
+  resetForm = () => {
+    this.setState({
+      budget: '',
+      email: '',
+      fullName: '',
+      organizationName: '',
+      overview: ''
+    });
+  };
+  renderAlert = () => {
+    const { alertSuccess, alertError, errorText } = this.state;
+    if (alertSuccess) {
+      return (
+        <div className="notification is-success" style={{ marginTop: '1rem' }}>
+          <button
+            className="delete"
+            onClick={() => this.setState({ alertVisible: false })}
+          />
+          <strong>Thank You!</strong> We look forward to working with you.
+        </div>
+      );
+    }
+    if (alertError) {
+      return (
+        <div className="notification is-danger" style={{ marginTop: '1rem' }}>
+          <button
+            className="delete"
+            onClick={() => this.setState({ alertVisible: false })}
+          />
+          <strong>Error!</strong> {errorText}
+        </div>
+      );
+    }
+    return;
+  };
   render() {
     const { data } = this.props;
-    console.log(data);
     const { edges: posts } = data.allMarkdownRemark;
     const { edges: portfolio } = data.allMarkdownRemark;
+
     return (
       <section className="section">
         <div className="container">
@@ -58,14 +241,16 @@ export default class IndexPage extends React.Component {
                 post => post.node.frontmatter.templateKey === 'portfolio-item'
               )
               .map(({ node: post }) => (
-                <div className="column is-one-third ">
+                <div className="column is-one-third" key={post.id}>
                   <Link to={post.fields.slug}>
-                    <div className=" thumb" key={post.id}>
+                    <div className="thumb">
                       <div className="card-image">
                         <Container>
                           <Image
-                            src="https://picsum.photos/1280/960?image=28"
-                            alt="Placeholder image"
+                            src={`${window.location.origin}${
+                              post.frontmatter.image
+                            }`}
+                            alt={post.frontmatter.title}
                           />
                           <Overlay>
                             <Text>{post.frontmatter.title}</Text>
@@ -75,57 +260,143 @@ export default class IndexPage extends React.Component {
                     </div>
                   </Link>
                 </div>
-                // <div
-                //   className="content column is-one-third"
-                //   style={{ border: '1px solid #eaecee', padding: '2em 4em' }}
-                //   key={post.id}
-                // >
-                //   <p>
-                //     <Link className="has-text-primary" to={post.fields.slug}>
-                //       {post.frontmatter.title}
-                //     </Link>
-                //     <span> &bull; </span>
-                //     <small>{post.frontmatter.date}</small>
-                //   </p>
-                //   <p>
-                //     {post.excerpt}
-                //     <br />
-                //     <br />
-                //     <Link className="button is-small" to={post.fields.slug}>
-                //       Keep Reading →
-                //     </Link>
-                //   </p>
-                // </div>
               ))}
           </div>
           <div className="content">
-            <h1 className="has-text-weight-bold is-size-2">Latest Stories</h1>
-          </div>
-          {posts
-            .filter(post => post.node.frontmatter.templateKey === 'blog-post')
-            .map(({ node: post }) => (
-              <div
-                className="content"
-                style={{ border: '1px solid #eaecee', padding: '2em 4em' }}
-                key={post.id}
-              >
-                <p>
-                  <Link className="has-text-primary" to={post.fields.slug}>
-                    {post.frontmatter.title}
-                  </Link>
-                  <span> &bull; </span>
-                  <small>{post.frontmatter.date}</small>
-                </p>
-                <p>
-                  {post.excerpt}
-                  <br />
-                  <br />
-                  <Link className="button is-small" to={post.fields.slug}>
-                    Keep Reading →
-                  </Link>
-                </p>
+            <h1 className="has-text-weight-bold is-size-2">Our Services</h1>
+            <div className="container">
+              <div className="columns is-variable is-4">
+                <div className="column">
+                  <img
+                    src={designLogo}
+                    alt="Design Logo"
+                    style={{ padding: '3rem' }}
+                  />
+                  <p>
+                    How can graphic design help my business? Your business is
+                    unique. You need to stand apart from the crowd. Here at RPL
+                    we use our knowledge and creativity to help you do just
+                    that.
+                  </p>
+                </div>
+                <div className="column">
+                  <img
+                    src={webLogo}
+                    alt="Web Logo"
+                    style={{ padding: '3rem' }}
+                  />
+                  <p>
+                    We here at Rocketpunch Labs understand the importance of
+                    having a quality website in todays technologically inclined
+                    market place. We also understand how confusing it can be
+                    when trying to get your business on the web.
+                  </p>
+                </div>
+                <div className="column">
+                  <img
+                    src={rocketLogo}
+                    alt="Rocket Logo"
+                    style={{ padding: '3rem' }}
+                  />
+                  <p>
+                    We’ll help you tell your story and grow your business by
+                    developing a compelling visual brand that aligns to your
+                    vision and values, and elevates everything else that you do.
+                  </p>
+                </div>
               </div>
-            ))}
+            </div>
+          </div>
+          <div className="content">
+            <div className="columns">
+              <div className="column is-half is-offset-one-quarter">
+                <h1 className="has-text-weight-bold is-size-2">Let's Chat</h1>
+                <form>
+                  <div className="field">
+                    <label className="label">Full Name</label>
+                    <div className="control">
+                      <input
+                        className="input"
+                        onChange={this.handleInputChange}
+                        name="fullName"
+                        type="text"
+                        placeholder="Full Name"
+                      />
+                    </div>
+                  </div>
+                  <div className="field">
+                    <label className="label">Organization Name</label>
+                    <div className="control">
+                      <input
+                        className="input"
+                        onChange={this.handleInputChange}
+                        name="organizationName"
+                        type="text"
+                        placeholder="Organization Name"
+                      />
+                    </div>
+                  </div>
+                  <div className="field">
+                    <label className="label">Email</label>
+                    <div className="control">
+                      <input
+                        className="input"
+                        onChange={this.handleInputChange}
+                        name="email"
+                        type="email"
+                        placeholder="Email"
+                      />
+                    </div>
+                  </div>
+                  <div className="field">
+                    <label className="label">
+                      Please provide a brief overview describing your work
+                      needed
+                    </label>
+                    <div className="control">
+                      <textarea
+                        name="overview"
+                        onChange={this.handleInputChange}
+                        rows="5"
+                        placeholder="Overview"
+                        className="textarea"
+                      />
+                    </div>
+                  </div>
+                  <div className="field">
+                    <label className="label">Estimated Budget</label>
+                    <div className="control">
+                      <input
+                        className="input"
+                        onChange={this.handleInputChange}
+                        name="budget"
+                        type="text"
+                        placeholder="Estimated Budget"
+                      />
+                    </div>
+                  </div>
+                  <div className="field">
+                    <div className="g-recaptcha" data-sitekey={prodKey} />
+                  </div>
+                  <div className="field">
+                    <div className="control">
+                      <button
+                        onClick={this.submitForm}
+                        className={
+                          this.state.processing
+                            ? 'button is-link is-loading'
+                            : 'button is-link'
+                        }
+                      >
+                        Submit
+                      </button>
+                    </div>
+                  </div>
+                </form>
+                {this.state.alertVisible ? this.renderAlert() : ''}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     );
@@ -144,7 +415,7 @@ export const pageQuery = graphql`
           }
           frontmatter {
             title
-
+            image
             templateKey
             date(formatString: "MMMM DD, YYYY")
           }

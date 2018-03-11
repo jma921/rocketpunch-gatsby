@@ -8,7 +8,13 @@ import './all.sass';
 
 const TemplateWrapper = ({ children }) => (
   <div>
-    <Helmet title="Home | Gatsby + Netlify CMS" />
+    <Helmet title="Home | Gatsby + Netlify CMS">
+      <script src="https://www.google.com/recaptcha/api.js" async defer />
+      <link
+        href="https://fonts.googleapis.com/css?family=Work+Sans:400,700"
+        rel="stylesheet"
+      />
+    </Helmet>
     <Navbar />
     <div>{children()}</div>
     <Footer />

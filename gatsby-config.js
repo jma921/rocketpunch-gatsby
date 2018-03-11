@@ -19,6 +19,7 @@ module.exports = {
         name: 'images'
       }
     },
+    'gatsby-plugin-styled-components',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
     {
