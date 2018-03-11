@@ -11,20 +11,37 @@ import './main.css';
 const testKey = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
 const prodKey = '6Ld3mwcTAAAAAAT8mSIvlxiNOCAaIpVaTkmuIKPK';
 
-// const validateRecaptcha = async recaptchaResponse => {
-//   return true;
-//   try {
-//     const response = await axios({
-//       method: 'get',
-//       headers: {
-//         'Access-Control-Allow-Origin': '*'
-//       },
-//       url: `https://j01q67wvpg.execute-api.us-east-1.amazonaws.com/dev/validate/${recaptchaResponse}`
+const validateRecaptcha = recaptchaResponse => {
+  return new Promise((resolve, reject) => {
+    axios({
+      method: 'get',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      },
+      url: `https://j01q67wvpg.execute-api.us-east-1.amazonaws.com/dev/validate/${recaptchaResponse}`
+    })
+      .then(response => {
+        resolve(response.data.success);
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
+};
+// const validateRecaptcha = recaptchaResponse => {
+//   axios({
+//     method: 'get',
+//     headers: {
+//       'Access-Control-Allow-Origin': '*'
+//     },
+//     url: `https://j01q67wvpg.execute-api.us-east-1.amazonaws.com/dev/validate/${recaptchaResponse}`
+//   })
+//     .then(response => {
+//       return response.data.success;
+//     })
+//     .catch(err => {
+//       console.log(err);
 //     });
-//     return response.data.success;
-//   } catch (e) {
-//     console.error(e);
-//   }
 // };
 
 const Container = styled.figure`
@@ -94,6 +111,8 @@ export default class IndexPage extends React.Component {
       processing: true
     });
 
+    const { fullName, email, budget, organizationName, overview } = this.state;
+
     const recaptchaResponse = grecaptcha.getResponse();
 
     if (!recaptchaResponse) {
@@ -106,7 +125,55 @@ export default class IndexPage extends React.Component {
       return;
     }
 
-    // const gRecaptchaResponse = await validateRecaptcha(recaptchaResponse);
+    validateRecaptcha(recaptchaResponse)
+      .then(res => {
+        const emailMarkup = `<p><strong>Name</strong>: <i>${fullName}</i></p>
+                         <p><strong>Email</strong>: <i>${email}</i></p>
+                         <p><strong>Organization Name</strong>: <i>${organizationName}</i></p>
+                         <p><strong>Overview</strong>: <i>${overview}</i></p>
+                         <p><strong>Budget</strong>: <i>${budget}</i></p>`;
+
+        const emailObj = {
+          subject: `Contact From ${name}`,
+          email_to: ['jma921@gmail.com'],
+          email_from: 'no-reply@rocketpunchlabs.com',
+          html: emailMarkup
+        };
+
+        axios({
+          method: 'post',
+          headers: {
+            'Access-Control-Allow-Origin': '*'
+          },
+          url:
+            'https://4ag3is2966.execute-api.us-east-1.amazonaws.com/dev/mail/post',
+          auth: {
+            username: 'jma921',
+            password: '96oxTnVyTULKTT'
+          },
+          data: emailObj
+        })
+          .then(res => {
+            this.resetForm();
+            this.setState({
+              processing: false,
+              alertSuccess: true,
+              alertVisible: true
+            });
+          })
+          .catch(err => {
+            console.log(err);
+            this.setState({ processing: false, error: true });
+          });
+      })
+      .catch(err => {
+        this.setState({
+          errorText: 'You are a bot. Go away!',
+          alertError: true,
+          alertVisible: true,
+          processing: false
+        });
+      });
     // if (!gRecaptchaResponse) {
     //   this.setState({
     //     errorText: 'You are a bot. Go away!',
@@ -116,8 +183,6 @@ export default class IndexPage extends React.Component {
     //   });
     //   return;
     // }
-
-    const { fullName, email, budget, organizationName, overview } = this.state;
 
     // const validate = validateForm(name, email, message);
     // if (validate === 'name') {
@@ -139,45 +204,6 @@ export default class IndexPage extends React.Component {
     //   });
     //   return;
     // }
-
-    const emailMarkup = `<p><strong>Name</strong>: <i>${fullName}</i></p>
-                         <p><strong>Email</strong>: <i>${email}</i></p>
-                         <p><strong>Organization Name</strong>: <i>${organizationName}</i></p>
-                         <p><strong>Overview</strong>: <i>${overview}</i></p>
-                         <p><strong>Budget</strong>: <i>${budget}</i></p>`;
-
-    const emailObj = {
-      subject: `Contact From ${name}`,
-      email_to: ['jma921@gmail.com'],
-      email_from: 'no-reply@rocketpunchlabs.com',
-      html: emailMarkup
-    };
-
-    axios({
-      method: 'post',
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      },
-      url:
-        'https://4ag3is2966.execute-api.us-east-1.amazonaws.com/dev/mail/post',
-      auth: {
-        username: 'jma921',
-        password: '96oxTnVyTULKTT'
-      },
-      data: emailObj
-    })
-      .then(res => {
-        this.resetForm();
-        this.setState({
-          processing: false,
-          alertSuccess: true,
-          alertVisible: true
-        });
-      })
-      .catch(err => {
-        console.log(err);
-        this.setState({ processing: false, error: true });
-      });
   };
   resetForm = () => {
     this.setState({
