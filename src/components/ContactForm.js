@@ -25,6 +25,9 @@ class ContactForm extends Component {
     });
   };
   handleSubmit = e => {
+    this.setState({
+      processing: true
+    });
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -44,14 +47,40 @@ class ContactForm extends Component {
       overview: ''
     });
   };
+  renderAlert = () => {
+    const { alertSuccess, alertError, errorText } = this.state;
+    if (alertSuccess) {
+      return (
+        <div className="notification is-success" style={{ marginTop: '1rem' }}>
+          <button
+            className="delete"
+            onClick={() => this.setState({ alertVisible: false })}
+          />
+          <strong>Thank You!</strong> We look forward to working with you.
+        </div>
+      );
+    }
+    if (alertError) {
+      return (
+        <div className="notification is-danger" style={{ marginTop: '1rem' }}>
+          <button
+            className="delete"
+            onClick={() => this.setState({ alertVisible: false })}
+          />
+          <strong>Error!</strong> {errorText}
+        </div>
+      );
+    }
+    return;
+  };
   render() {
     return (
       <div>
         <form
-          onSubmit={this.submitForm}
           name="contact"
           method="post"
           action="/thanks/"
+          onSubmit={this.handleSubmit}
           data-netlify="true"
           data-netlify-honeypot="bot-field"
         >
@@ -119,7 +148,9 @@ class ContactForm extends Component {
           </div>
           <div className="field">
             <div className="control">
-              <button type="submit">Submit</button>
+              <button className="button is-link" type="submit">
+                Submit
+              </button>
             </div>
           </div>
         </form>

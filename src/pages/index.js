@@ -226,32 +226,32 @@ export default class IndexPage extends React.Component {
   //     overview: ''
   //   });
   // };
-  renderAlert = () => {
-    const { alertSuccess, alertError, errorText } = this.state;
-    if (alertSuccess) {
-      return (
-        <div className="notification is-success" style={{ marginTop: '1rem' }}>
-          <button
-            className="delete"
-            onClick={() => this.setState({ alertVisible: false })}
-          />
-          <strong>Thank You!</strong> We look forward to working with you.
-        </div>
-      );
-    }
-    if (alertError) {
-      return (
-        <div className="notification is-danger" style={{ marginTop: '1rem' }}>
-          <button
-            className="delete"
-            onClick={() => this.setState({ alertVisible: false })}
-          />
-          <strong>Error!</strong> {errorText}
-        </div>
-      );
-    }
-    return;
-  };
+  // renderAlert = () => {
+  //   const { alertSuccess, alertError, errorText } = this.state;
+  //   if (alertSuccess) {
+  //     return (
+  //       <div className="notification is-success" style={{ marginTop: '1rem' }}>
+  //         <button
+  //           className="delete"
+  //           onClick={() => this.setState({ alertVisible: false })}
+  //         />
+  //         <strong>Thank You!</strong> We look forward to working with you.
+  //       </div>
+  //     );
+  //   }
+  //   if (alertError) {
+  //     return (
+  //       <div className="notification is-danger" style={{ marginTop: '1rem' }}>
+  //         <button
+  //           className="delete"
+  //           onClick={() => this.setState({ alertVisible: false })}
+  //         />
+  //         <strong>Error!</strong> {errorText}
+  //       </div>
+  //     );
+  //   }
+  //   return;
+  // };
   render() {
     console.log(this.props);
     const { data } = this.props;
