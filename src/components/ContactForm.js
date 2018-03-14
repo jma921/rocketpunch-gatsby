@@ -33,7 +33,14 @@ class ContactForm extends Component {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({ 'form-name': 'contact', ...this.state })
     })
-      .then(() => alert('Success!'))
+      .then(() => {
+        this.setState({
+          processing: false,
+          success: true,
+          alertVisible: true
+        });
+        this.resetForm();
+      })
       .catch(error => alert(error));
 
     e.preventDefault();
@@ -48,26 +55,21 @@ class ContactForm extends Component {
     });
   };
   renderAlert = () => {
-    const { alertSuccess, alertError, errorText } = this.state;
-    if (alertSuccess) {
+    const { success, error, alertVisible } = this.state;
+    if (!alertVisible) {
+      return null;
+    }
+    if (success) {
       return (
         <div className="notification is-success" style={{ marginTop: '1rem' }}>
-          <button
-            className="delete"
-            onClick={() => this.setState({ alertVisible: false })}
-          />
           <strong>Thank You!</strong> We look forward to working with you.
         </div>
       );
     }
-    if (alertError) {
+    if (error) {
       return (
         <div className="notification is-danger" style={{ marginTop: '1rem' }}>
-          <button
-            className="delete"
-            onClick={() => this.setState({ alertVisible: false })}
-          />
-          <strong>Error!</strong> {errorText}
+          <strong>Error!</strong> {this.state.error}
         </div>
       );
     }
