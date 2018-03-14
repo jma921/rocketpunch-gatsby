@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 
+function encode(data) {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
+    .join('&');
+}
+
 class ContactForm extends Component {
   state = {
     fullName: '',
@@ -43,10 +49,11 @@ class ContactForm extends Component {
       <div>
         <form
           onSubmit={this.submitForm}
-          //   name="contact-form"
-          //   method="post"
-          //   data-netlify="true"
-          //   data-netlify-honeypot="bot-field"
+          name="contact"
+          method="post"
+          action="/thanks/"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
         >
           <div className="field">
             <label className="label">Full Name</label>
@@ -112,16 +119,7 @@ class ContactForm extends Component {
           </div>
           <div className="field">
             <div className="control">
-              <button
-                onClick={this.submitForm}
-                className={
-                  this.state.processing
-                    ? 'button is-link is-loading'
-                    : 'button is-link'
-                }
-              >
-                Submit
-              </button>
+              <button type="submit">Submit</button>
             </div>
           </div>
         </form>
