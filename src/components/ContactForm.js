@@ -13,7 +13,12 @@ class ContactForm extends Component {
     message: '',
     organizationName: '',
     overview: '',
-    budget: ''
+    budget: '',
+    processing: false,
+    alertVisible: false,
+    success: false,
+    error: false,
+    errorMessage: ''
   };
   handleInputChange = event => {
     const target = event.target;
@@ -41,9 +46,30 @@ class ContactForm extends Component {
         });
         this.resetForm();
       })
-      .catch(error => alert(error));
+      .catch(error => {
+        this.setState({
+          error: true,
+          errorMessage: error
+        });
+      });
 
     e.preventDefault();
+  };
+  renderButton = () => {
+    const { processing } = this.state;
+    if (processing) {
+      return (
+        <button className="button is-link is-loading" type="submit">
+          Submit
+        </button>
+      );
+    } else {
+      return (
+        <button className="button is-link" type="submit">
+          Submit
+        </button>
+      );
+    }
   };
   resetForm = () => {
     this.setState({
@@ -55,7 +81,7 @@ class ContactForm extends Component {
     });
   };
   renderAlert = () => {
-    const { success, error, alertVisible } = this.state;
+    const { success, error, alertVisible, errorMessage } = this.state;
     if (!alertVisible) {
       return null;
     }
@@ -69,7 +95,10 @@ class ContactForm extends Component {
     if (error) {
       return (
         <div className="notification is-danger" style={{ marginTop: '1rem' }}>
-          <strong>Error!</strong> {this.state.error}
+          <strong>Error!</strong>{' '}
+          {process.env.NODE_ENV === 'development'
+            ? `Development error | ${errorMessage}`
+            : 'Please try again later.'}
         </div>
       );
     }
@@ -93,8 +122,8 @@ class ContactForm extends Component {
                 className="input"
                 onChange={this.handleInputChange}
                 name="fullName"
+                value={this.state.fullName}
                 type="text"
-                placeholder="Full Name"
               />
             </div>
           </div>
@@ -105,8 +134,8 @@ class ContactForm extends Component {
                 className="input"
                 onChange={this.handleInputChange}
                 name="organizationName"
+                value={this.state.organizationName}
                 type="text"
-                placeholder="Organization Name"
               />
             </div>
           </div>
@@ -117,8 +146,8 @@ class ContactForm extends Component {
                 className="input"
                 onChange={this.handleInputChange}
                 name="email"
+                value={this.state.email}
                 type="email"
-                placeholder="Email"
               />
             </div>
           </div>
@@ -129,9 +158,9 @@ class ContactForm extends Component {
             <div className="control">
               <textarea
                 name="overview"
+                value={this.state.overview}
                 onChange={this.handleInputChange}
                 rows="5"
-                placeholder="Overview"
                 className="textarea"
               />
             </div>
@@ -143,17 +172,13 @@ class ContactForm extends Component {
                 className="input"
                 onChange={this.handleInputChange}
                 name="budget"
+                value={this.state.budget}
                 type="text"
-                placeholder="Estimated Budget"
               />
             </div>
           </div>
           <div className="field">
-            <div className="control">
-              <button className="button is-link" type="submit">
-                Submit
-              </button>
-            </div>
+            <div className="control">{this.renderButton()}</div>
           </div>
         </form>
         {this.state.alertVisible ? this.renderAlert() : ''}

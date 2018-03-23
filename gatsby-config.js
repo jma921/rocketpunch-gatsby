@@ -19,7 +19,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/src/img`,
-        name: 'img'
+        name: 'images'
       }
     },
     {
@@ -40,6 +40,8 @@ module.exports = {
               // the content container as this plugin uses this as the
               // base for generating different widths of each image.
               maxWidth: 300,
+              linkImagesToOriginal: false,
+              quality: 80,
               wrapperStyle: 'margin-bottom:10px; background: red;'
             }
           }

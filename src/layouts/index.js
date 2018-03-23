@@ -6,20 +6,24 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import './all.sass';
 
-const TemplateWrapper = ({ children }) => (
-  <div>
-    <Helmet title="Home | Gatsby + Netlify CMS">
-      <script src="https://www.google.com/recaptcha/api.js" async defer />
-      <link
-        href="https://fonts.googleapis.com/css?family=Work+Sans:400,700"
-        rel="stylesheet"
-      />
-    </Helmet>
-    <Navbar />
-    <div>{children()}</div>
-    <Footer />
-  </div>
-);
+const TemplateWrapper = props => {
+  // console.log(props);
+  const { children, location } = props;
+  return (
+    <div>
+      <Helmet title="Home | Gatsby + Netlify CMS">
+        <script src="https://www.google.com/recaptcha/api.js" async defer />
+        <link
+          href="https://fonts.googleapis.com/css?family=Work+Sans:400,700"
+          rel="stylesheet"
+        />
+      </Helmet>
+      <Navbar pathname={location.pathname} />
+      <div>{children()}</div>
+      <Footer />
+    </div>
+  );
+};
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func
