@@ -1,8 +1,8 @@
 ---
 templateKey: portfolio-item
 title: House of Prayer
-date: 2018-03-07T00:00:00-06:00
-description: Card | Banner
+date: 2018-03-07T06:00:00.000Z
+description: Card | Banner | Graphic Design
 image: /img/hopinvite.jpg
 ---
 
