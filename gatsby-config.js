@@ -3,11 +3,6 @@ module.exports = {
     title: 'Rocketpunch Labs'
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-sass',
-    'gatsby-plugin-sharp',
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -29,6 +24,8 @@ module.exports = {
         name: 'img'
       }
     },
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp',
     {
       resolve: 'gatsby-transformer-remark',
       options: {
@@ -36,18 +33,15 @@ module.exports = {
           {
             resolve: `gatsby-remark-images`,
             options: {
-              // It's important to specify the maxWidth (in pixels) of
-              // the content container as this plugin uses this as the
-              // base for generating different widths of each image.
-              maxWidth: 300,
-              linkImagesToOriginal: false,
-              quality: 80,
-              wrapperStyle: 'margin-bottom:10px; background: red;'
+              maxWidth: 800
             }
           }
         ]
       }
     },
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sass',
+    'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {

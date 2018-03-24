@@ -3759,24 +3759,7 @@ gatsby-plugin-sass@^1.0.17:
     sass-loader "^4.1.1"
     webpack "^1.13.3"
 
-gatsby-plugin-sharp@^1.6.34:
-  version "1.6.34"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-1.6.34.tgz#11cd60af3d3a9c8e77772476ba200830f7e71eb6"
-  dependencies:
-    async "^2.1.2"
-    babel-runtime "^6.26.0"
-    bluebird "^3.5.0"
-    imagemin "^5.2.2"
-    imagemin-pngquant "^5.0.0"
-    imagemin-webp "^4.0.0"
-    lodash "^4.17.4"
-    potrace "^2.1.1"
-    probe-image-size "^3.2.0"
-    progress "^1.1.8"
-    sharp "^0.19.0"
-    svgo "^0.7.2"
-
-gatsby-plugin-sharp@^1.6.39:
+gatsby-plugin-sharp@^1.6.39, gatsby-plugin-sharp@^1.6.41:
   version "1.6.41"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-1.6.41.tgz#87dc28d226d70e63408bf31983268efdf10e8b1d"
   dependencies:
@@ -3819,15 +3802,6 @@ gatsby-remark-images@^1.5.56:
     slash "^1.0.0"
     unist-util-select "^1.5.0"
 
-gatsby-remark-responsive-image@^1.0.0-alpha13-alpha.435e0178:
-  version "1.0.0-alpha13-alpha.435e0178"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-responsive-image/-/gatsby-remark-responsive-image-1.0.0-alpha13-alpha.435e0178.tgz#dc6d2995de371d86ef279a2f444efd46133f70ca"
-  dependencies:
-    image-size "^0.5.1"
-    is-relative-url "^2.0.0"
-    lodash "^4.17.4"
-    unist-util-select "^1.5.0"
-
 gatsby-source-filesystem@^1.5.23:
   version "1.5.24"
   resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-1.5.24.tgz#5d1ff9b3994fff967be92f6fea27e6cf1ba75fbe"
@@ -3844,9 +3818,9 @@ gatsby-source-filesystem@^1.5.23:
     slash "^1.0.0"
     valid-url "^1.0.9"
 
-gatsby-transformer-remark@^1.7.33:
-  version "1.7.33"
-  resolved "https://registry.yarnpkg.com/gatsby-transformer-remark/-/gatsby-transformer-remark-1.7.33.tgz#02fc88206bbdac989442c243c3229b6468e8999b"
+gatsby-transformer-remark@^1.7.37:
+  version "1.7.37"
+  resolved "https://registry.yarnpkg.com/gatsby-transformer-remark/-/gatsby-transformer-remark-1.7.37.tgz#30ad37403a7dd647e69fc7696e024dade526a12f"
   dependencies:
     babel-runtime "^6.26.0"
     bluebird "^3.5.0"
@@ -4857,10 +4831,6 @@ icss-replace-symbols@^1.1.0:
 ieee754@^1.1.4:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.8.tgz#be33d40ac10ef1926701f6f08a2d86fbfd1ad3e4"
-
-image-size@^0.5.1:
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/image-size/-/image-size-0.5.5.tgz#09dfd4ab9d20e29eb1c3e80b8990378df9e3cb9c"
 
 imagemin-pngquant@^5.0.0:
   version "5.0.1"
@@ -9493,18 +9463,6 @@ shallow-equal@^1.0.0:
 shallowequal@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.0.2.tgz#1561dbdefb8c01408100319085764da3fcf83f8f"
-
-sharp@^0.19.0:
-  version "0.19.1"
-  resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.19.1.tgz#819bf11f5c3f4ff32eb465f255b5fb87e43ceea1"
-  dependencies:
-    color "^3.0.0"
-    detect-libc "^1.0.3"
-    nan "^2.9.2"
-    semver "^5.5.0"
-    simple-get "^2.7.0"
-    tar "^4.4.0"
-    tunnel-agent "^0.6.0"
 
 sharp@^0.20.0:
   version "0.20.0"

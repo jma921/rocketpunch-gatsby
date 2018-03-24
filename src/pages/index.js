@@ -4,83 +4,17 @@ import Img from 'gatsby-image';
 import styled from 'styled-components';
 import axios from 'axios';
 import ContactForm from '../components/ContactForm';
+import HeaderImg from '../components/HeaderImg';
+import PortfolioCard from '../components/PortfolioCard';
 const designLogo = require('../img/undraw_specs2_2jb3.svg');
 const webLogo = require('../img/undraw_real-time_sync_o57k.svg');
 const rocketLogo = require('../img/undraw_To_the_stars_qhyy.svg');
 
 import './main.css';
 
-const HeaderImg = styled(Img)`
-  margin-top: -52px;
-  display: inherit;
-  height: 65vh;
-`;
-
-const Container = styled.figure`
-  cursor: pointer;
-`;
-
-const Image = styled.img`
-  display: block;
-  width: 100%;
-  height: auto;
-  cursor: pointer;
-`;
-
-const Overlay = styled.div`
-  border: 8px solid #f40;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 100%;
-  width: 100%;
-  opacity: 0;
-  transition: 0.2s ease;
-  background-color: white; // Overlay background color
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  &:hover {
-    opacity: 1;
-  }
-`;
-
-const Text = styled.p`
-  color: #333333;
-  text-align: center;
-  font-size: 2rem;
-  font-weight: normal;
-`;
-
-const SubText = styled.p`
-  color: #aaaaaa;
-  text-align: center;
-  font-size: 1rem;
-  font-weight: 100;
-  text-transform: uppercase;
-`;
-
 export default class IndexPage extends React.Component {
-  state = {
-    budget: '',
-    email: '',
-    fullName: '',
-    organizationName: '',
-    overview: '',
-    processing: false,
-    alertVisible: false,
-    alertSuccess: false,
-    alertError: false,
-    errorText: ''
-  };
-
   render() {
-    console.log(this.props);
     const { data } = this.props;
-    const { edges: posts } = data.allMarkdownRemark;
     const { edges: portfolio } = data.allMarkdownRemark;
 
     return (
@@ -99,24 +33,7 @@ export default class IndexPage extends React.Component {
                   post => post.node.frontmatter.templateKey === 'portfolio-item'
                 )
                 .map(({ node: post }) => (
-                  <div className="column is-one-third" key={post.id}>
-                    <Link to={post.fields.slug}>
-                      <div className="thumb">
-                        <div className="card-image">
-                          <Container>
-                            <Image
-                              src={post.frontmatter.image}
-                              alt={post.frontmatter.title}
-                            />
-                            <Overlay>
-                              <Text>{post.frontmatter.title}</Text>
-                              <SubText>{post.frontmatter.description}</SubText>
-                            </Overlay>
-                          </Container>
-                        </div>
-                      </div>
-                    </Link>
-                  </div>
+                  <PortfolioCard key={post.id} post={post} />
                 ))}
             </div>
             <div id="about" className="content mt-3">
@@ -208,7 +125,13 @@ export const pageQuery = graphql`
           frontmatter {
             title
             description
-            image
+            image {
+              childImageSharp {
+                sizes(maxWidth: 480) {
+                  srcSet
+                }
+              }
+            }
             templateKey
             date(formatString: "MMMM DD, YYYY")
           }

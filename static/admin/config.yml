@@ -4,6 +4,7 @@ backend:
 
 media_folder: static/img
 public_folder: /img
+# public_folder: static
 
 collections:
   - name: "blog"
@@ -33,14 +34,7 @@ collections:
 
   - name: "pages"
     label: "Pages"
-    files:
-      - file: "src/pages/about/about.md"
-        label: "About"
-        name: "about"
-        fields:
-          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "about-page"}
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Body", name: "body", widget: "markdown"}
+    files:      
       - file: "src/pages/product/product.md"
         label: "Products Page"
         name: "products"

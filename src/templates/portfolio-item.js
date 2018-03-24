@@ -31,7 +31,6 @@ export const PortfolioItemTemplate = ({
 
 export default props => {
   const { markdownRemark: post } = props.data;
-  console.log(props);
 
   return (
     <PortfolioItemTemplate
@@ -44,17 +43,6 @@ export default props => {
   );
 };
 
-// file(relativePath: { eq: "arise.jpg" }) {
-//   size
-//   id
-//   childImageSharp {
-//     # Specify the image processing specifications right in the query.
-//     # Makes it trivial to update as your page's design changes.
-//     resolutions(width: 125, height: 125) {
-//       ...GatsbyImageSharpResolutions
-//     }
-//   }
-// }
 export const pageQuery = graphql`
   query PortfolioItemByID($id: String!) {
     markdownRemark(id: { eq: $id }) {
@@ -64,7 +52,13 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         title
         description
-        image
+        image {
+          childImageSharp {
+            sizes(maxWidth: 800) {
+              srcSet
+            }
+          }
+        }
       }
     }
   }
