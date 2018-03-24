@@ -56,12 +56,24 @@ const SubText = styled.p`
 
 const PortfolioCard = props => {
   const { post } = props;
+  console.log(post);
   return (
     <div className="column is-one-third" key={post.id}>
       <Link to={post.fields.slug}>
         <div className="thumb">
           <div className="card-image">
             <Container>
+              <Image
+                sizes={post.frontmatter.image.childImageSharp.sizes}
+                alt={post.frontmatter.title}
+              />
+              <Overlay>
+                <Text>{post.frontmatter.title}</Text>
+                <SubText>{post.frontmatter.description}</SubText>
+              </Overlay>
+            </Container>
+            {/*
+              <Container>
               <Image
                 imgStyle={{ position: 'inherit' }}
                 sizes={post.frontmatter.image.childImageSharp.sizes}
@@ -72,6 +84,7 @@ const PortfolioCard = props => {
                 <SubText>{post.frontmatter.description}</SubText>
               </Overlay>
             </Container>
+            */}
           </div>
         </div>
       </Link>
