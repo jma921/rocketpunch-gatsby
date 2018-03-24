@@ -1,8 +1,8 @@
 ---
 templateKey: portfolio-item
 title: Impact Campus Ministries
-date: 2018-03-07T00:00:00-06:00
-description: Logo Design
+date: 2018-03-07T06:00:00.000Z
+description: Logo | Graphic Design
 image: /img/impact.jpg
 ---
 
