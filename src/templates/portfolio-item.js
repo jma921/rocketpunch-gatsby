@@ -12,7 +12,6 @@ export const PortfolioItemTemplate = ({
   images
 }) => {
   const PostContent = contentComponent || Content;
-  console.log(images);
   return (
     <section className="section">
       {helmet || ''}

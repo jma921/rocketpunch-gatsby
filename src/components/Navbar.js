@@ -1,7 +1,7 @@
 import React from 'react';
 import Link, { navigateTo } from 'gatsby-link';
 import styled from 'styled-components';
-
+import PropTypes from 'prop-types';
 import Facebook from './icons/Facebook';
 import Instagram from './icons/Instagram';
 import Twitter from './icons/Twitter';
@@ -87,7 +87,6 @@ class Navbar extends React.Component {
     });
   };
   render() {
-    // console.log(this.state);
     return (
       <Nav path={this.state.path}>
         <div className="container">
@@ -159,5 +158,10 @@ class Navbar extends React.Component {
     );
   }
 }
+
+Navbar.PropTypes = {
+  path: PropTypes.string,
+  hash: PropTypes.string
+};
 
 export default Navbar;

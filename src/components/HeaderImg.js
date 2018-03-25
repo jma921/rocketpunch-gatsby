@@ -1,6 +1,7 @@
 import React from 'react';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 // const Image = styled(Img)`
 //   margin-top: -52px;
@@ -50,7 +51,6 @@ const Span = styled.span`
 `;
 
 const HeaderImg = props => {
-  console.log(props);
   return (
     <div>
       <Image sizes={props.sizes} />
@@ -62,6 +62,10 @@ const HeaderImg = props => {
       </Overlay>
     </div>
   );
+};
+
+HeaderImg.PropTypes = {
+  sizes: PropTypes.object
 };
 
 export default HeaderImg;

@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'gatsby-link';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Container = styled.figure`
   cursor: pointer;
@@ -71,24 +72,15 @@ const PortfolioCard = props => {
                 <SubText>{post.frontmatter.description}</SubText>
               </Overlay>
             </Container>
-            {/*
-              <Container>
-              <Image
-                imgStyle={{ position: 'inherit' }}
-                sizes={post.frontmatter.image.childImageSharp.sizes}
-                alt={post.frontmatter.title}
-              />
-              <Overlay>
-                <Text>{post.frontmatter.title}</Text>
-                <SubText>{post.frontmatter.description}</SubText>
-              </Overlay>
-            </Container>
-            */}
           </div>
         </div>
       </Link>
     </div>
   );
+};
+
+PortfolioCard.PropTypes = {
+  post: PropTypes.object
 };
 
 export default PortfolioCard;

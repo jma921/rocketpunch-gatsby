@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'gatsby-link';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 import ContactForm from '../components/ContactForm';
 import HeaderImg from '../components/HeaderImg';
 import PortfolioCard from '../components/PortfolioCard';
@@ -10,10 +10,9 @@ const designLogo = require('../img/undraw_specs2_2jb3.svg');
 const webLogo = require('../img/undraw_real-time_sync_o57k.svg');
 const rocketLogo = require('../img/undraw_To_the_stars_qhyy.svg');
 
-// import './main.css';
-
 export default class IndexPage extends React.Component {
   render() {
+    console.log(this.props);
     const { data } = this.props;
     const { edges: portfolio } = data.allMarkdownRemark;
 
@@ -98,6 +97,10 @@ export default class IndexPage extends React.Component {
     );
   }
 }
+
+IndexPage.PropTypes = {
+  data: PropTypes.object
+};
 
 export const pageQuery = graphql`
   query IndexQuery {
