@@ -1,5 +1,6 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import Img from 'gatsby-image';
 import Content, { HTMLContent } from '../components/Content';
 
 export const PortfolioItemTemplate = ({
@@ -7,10 +8,11 @@ export const PortfolioItemTemplate = ({
   contentComponent,
   description,
   title,
-  helmet
+  helmet,
+  images
 }) => {
   const PostContent = contentComponent || Content;
-
+  console.log(images);
   return (
     <section className="section">
       {helmet || ''}
@@ -21,7 +23,28 @@ export const PortfolioItemTemplate = ({
               {title}
             </h1>
             <p>{description}</p>
-            <PostContent content={content} />
+            {images.imagePath ? (
+              <Img
+                style={{ marginBottom: '3rem' }}
+                sizes={images.imagePath.childImageSharp.sizes}
+                title="ihihiuhiuh"
+              />
+            ) : null}
+            {images.imagePath2 ? (
+              <Img
+                style={{ marginBottom: '3rem' }}
+                sizes={images.imagePath2.childImageSharp.sizes}
+              />
+            ) : null}
+            {images.imagePath3 ? (
+              <Img
+                style={{ marginBottom: '3rem' }}
+                sizes={images.imagePath3.childImageSharp.sizes}
+              />
+            ) : null}
+            {/*
+              <PostContent content={content} />
+            */}
           </div>
         </div>
       </div>
@@ -31,7 +54,6 @@ export const PortfolioItemTemplate = ({
 
 export default props => {
   const { markdownRemark: post } = props.data;
-
   return (
     <PortfolioItemTemplate
       content={post.html}
@@ -39,6 +61,7 @@ export default props => {
       description={post.frontmatter.description}
       helmet={<Helmet title={`Work | ${post.frontmatter.title}`} />}
       title={post.frontmatter.title}
+      images={post.fields}
     />
   );
 };
@@ -48,17 +71,33 @@ export const pageQuery = graphql`
     markdownRemark(id: { eq: $id }) {
       id
       html
+      fields {
+        imagePath {
+          childImageSharp {
+            sizes(maxWidth: 800, maxHeight: 600) {
+              ...GatsbyImageSharpSizes_withWebp
+            }
+          }
+        }
+        imagePath2 {
+          childImageSharp {
+            sizes(maxWidth: 800, maxHeight: 600) {
+              ...GatsbyImageSharpSizes_withWebp
+            }
+          }
+        }
+        imagePath3 {
+          childImageSharp {
+            sizes(maxWidth: 800, maxHeight: 600) {
+              ...GatsbyImageSharpSizes_withWebp
+            }
+          }
+        }
+      }
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         title
         description
-        image {
-          childImageSharp {
-            sizes(maxWidth: 800) {
-              srcSet
-            }
-          }
-        }
       }
     }
   }

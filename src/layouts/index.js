@@ -7,12 +7,10 @@ import Footer from '../components/Footer';
 import './all.sass';
 
 const TemplateWrapper = props => {
-  // console.log(props);
   const { children, location } = props;
   return (
     <div>
-      <Helmet title="Home | Gatsby + Netlify CMS">
-        <script src="https://www.google.com/recaptcha/api.js" async defer />
+      <Helmet title="Rocketpunch Labs | Graphic Design | Web Design">
         <link
           href="https://fonts.googleapis.com/css?family=Work+Sans:400,700"
           rel="stylesheet"

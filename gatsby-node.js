@@ -15,13 +15,6 @@ exports.createPages = ({ boundActionCreators, graphql }) => {
             }
             frontmatter {
               templateKey
-              image {
-                childImageSharp {
-                  sizes(maxWidth: 480) {
-                    srcSet
-                  }
-                }
-              }
             }
           }
         }
@@ -80,6 +73,31 @@ exports.onCreateNode = ({
   } = boundActionCreators;
 
   if (node.internal.type === `MarkdownRemark`) {
+    const prefix = '../../../static';
+    const { imagePath, imagePath2, imagePath3 } = node.frontmatter;
+    const newImagePath = prefix + node.frontmatter.image;
+    const newImagePath2 = prefix + node.frontmatter.image2;
+    const newImagePath3 = prefix + node.frontmatter.image3;
+    createNodeField({
+      node,
+      name: `imagePath`,
+      value: newImagePath
+    });
+    if (newImagePath2) {
+      createNodeField({
+        node,
+        name: `imagePath2`,
+        value: newImagePath2
+      });
+    }
+    if (newImagePath3) {
+      createNodeField({
+        node,
+        name: `imagePath3`,
+        value: newImagePath3
+      });
+    }
+
     const { frontmatter } = node;
     if (frontmatter) {
       const { image } = frontmatter;

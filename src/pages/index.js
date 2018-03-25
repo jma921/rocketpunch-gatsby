@@ -10,7 +10,7 @@ const designLogo = require('../img/undraw_specs2_2jb3.svg');
 const webLogo = require('../img/undraw_real-time_sync_o57k.svg');
 const rocketLogo = require('../img/undraw_To_the_stars_qhyy.svg');
 
-import './main.css';
+// import './main.css';
 
 export default class IndexPage extends React.Component {
   render() {
