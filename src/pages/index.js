@@ -48,7 +48,7 @@ export default class IndexPage extends React.Component {
                       alt="Design Logo"
                       style={{ padding: '3rem' }}
                     />
-                    <p>
+                    <p style={{ lineHeight: '1.7' }}>
                       How can graphic design help my business? Your business is
                       unique. You need to stand apart from the crowd. Here at
                       RPL we use our knowledge and creativity to help you do
@@ -61,7 +61,7 @@ export default class IndexPage extends React.Component {
                       alt="Web Logo"
                       style={{ padding: '3rem' }}
                     />
-                    <p>
+                    <p style={{ lineHeight: '1.7' }}>
                       We here at Rocketpunch Labs understand the importance of
                       having a quality website in todays technologically
                       inclined market place. We also understand how confusing it
@@ -74,7 +74,7 @@ export default class IndexPage extends React.Component {
                       alt="Rocket Logo"
                       style={{ padding: '3rem' }}
                     />
-                    <p>
+                    <p style={{ lineHeight: '1.7' }}>
                       We’ll help you tell your story and grow your business by
                       developing a compelling visual brand that aligns to your
                       vision and values, and elevates everything else that you
@@ -128,7 +128,7 @@ export const pageQuery = graphql`
             image {
               childImageSharp {
                 sizes(maxWidth: 480) {
-                  ...GatsbyImageSharpSizes
+                  ...GatsbyImageSharpSizes_withWebp
                 }
               }
             }

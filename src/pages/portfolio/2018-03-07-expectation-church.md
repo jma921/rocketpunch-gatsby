@@ -6,4 +6,14 @@ description: Logo | Graphic Design
 image: /img/expectation.jpg
 ---
 
-![Expectation Church](/img/expectation.jpg)
+![Expectation Church logo](/img/expectation.jpg)
+
+### Logo
+
+![Expectation Church Letterhead](/img/expectation2.jpg)
+
+### Letterhead
+
+![Expectation Church card](/img/expectation3.jpg)
+
+### Invite Card

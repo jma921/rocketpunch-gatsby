@@ -8,4 +8,12 @@ image: /img/hopinvite.jpg
 
 ![House of Prayer invite](/img/hopinvite.jpg)
 
+### Invite Card
+
 ![House of Prayer Welcome](/img/hopwelcome.jpg)
+
+### Welcome Banner
+
+![House of Prayer Letterhead](/img/hopletterhead.jpg)
+
+### Letterhead

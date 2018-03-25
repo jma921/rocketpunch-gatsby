@@ -40,7 +40,7 @@ const Overlay = styled.div`
 `;
 
 const Text = styled.p`
-  color: #333333;
+  color: #4a4a4a;
   text-align: center;
   font-size: 2rem;
   font-weight: normal;
@@ -56,7 +56,6 @@ const SubText = styled.p`
 
 const PortfolioCard = props => {
   const { post } = props;
-  console.log(post);
   return (
     <div className="column is-one-third" key={post.id}>
       <Link to={post.fields.slug}>

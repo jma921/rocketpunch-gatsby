@@ -18,7 +18,7 @@ const TemplateWrapper = props => {
           rel="stylesheet"
         />
       </Helmet>
-      <Navbar pathname={location.pathname} />
+      <Navbar pathname={location.pathname} hash={location.hash} />
       <div>{children()}</div>
       <Footer />
     </div>

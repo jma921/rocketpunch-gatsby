@@ -18,22 +18,34 @@ const Nav = styled.nav.attrs({
     props.path === '/' ? 'rgba(0, 0, 0, 0) !important' : 'white !important'};
   a {
     color: ${props => (props.path === '/' ? 'white' : 'black')};
+    cursor: pointer;
     font-size: 1.25rem;
     &:hover {
       color: ${props =>
         props.path === '/' ? '#d8d8d8 !important' : 'black!important'};
     }
   }
-
+  .navbar-brand > a {
+    background-color: rgba(0, 0, 0, 0);
+    &:hover {
+      background-color: rgba(0, 0, 0, 0);
+    }
+  }
   .navbar-burger {
     color: white;
   }
   .is-active {
     color: black;
   }
-  @media screen and (max-width: 400px) {
-    a {
+  @media screen and (max-width: 1022px) {
+    .navbar-burger {
+      color: ${props => (props.path === '/' ? 'white' : 'black')};
+    }
+    .is-active {
       color: black;
+    }
+    a {
+      color: black !important;
       &:hover {
         color: black !important;
       }
@@ -46,7 +58,7 @@ const Nav = styled.nav.attrs({
 
 class Navbar extends React.Component {
   state = {
-    active: true
+    active: false
   };
   componentDidMount() {
     const { pathname } = this.props;
@@ -56,15 +68,20 @@ class Navbar extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    // console.log(prevProps, this.props);
     if (prevProps.pathname !== this.props.pathname) {
       this.setState({
         path: this.props.pathname
       });
     }
+
+    if (prevProps.hash !== this.props.hash) {
+      this.setState({
+        active: false
+      });
+    }
   }
 
-  onMenuClick = () => {
+  onHamburgerClick = () => {
     this.setState({
       active: !this.state.active
     });
@@ -82,10 +99,10 @@ class Navbar extends React.Component {
             </Link>
             <div
               className={
-                this.state.active ? 'navbar-burger' : 'navbar-burger is-active'
+                this.state.active ? 'navbar-burger is-active' : 'navbar-burger'
               }
               data-target="navMenu"
-              onClick={this.onMenuClick}
+              onClick={this.onHamburgerClick}
             >
               <span />
               <span />
@@ -94,7 +111,7 @@ class Navbar extends React.Component {
           </div>
           <div
             className={
-              this.state.active ? 'navbar-menu' : 'navbar-menu is-active'
+              this.state.active ? 'navbar-menu is-active' : 'navbar-menu'
             }
           >
             {this.state.path === '/' ? (
@@ -112,7 +129,12 @@ class Navbar extends React.Component {
             ) : (
               <div className="navbar-end">
                 <a
-                  onClick={() => navigateTo('/#work')}
+                  onClick={() => {
+                    navigateTo('/#work');
+                    this.setState({
+                      active: false
+                    });
+                  }}
                   className="navbar-item link"
                 >
                   Work
