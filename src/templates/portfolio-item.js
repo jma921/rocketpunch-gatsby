@@ -54,6 +54,7 @@ export const PortfolioItemTemplate = ({
 
 export default props => {
   const { markdownRemark: post } = props.data;
+  console.log(props);
   return (
     <PortfolioItemTemplate
       content={post.html}
@@ -73,20 +74,6 @@ export const pageQuery = graphql`
       html
       fields {
         imagePath {
-          childImageSharp {
-            sizes(maxWidth: 800, maxHeight: 600) {
-              ...GatsbyImageSharpSizes_withWebp
-            }
-          }
-        }
-        imagePath2 {
-          childImageSharp {
-            sizes(maxWidth: 800, maxHeight: 600) {
-              ...GatsbyImageSharpSizes_withWebp
-            }
-          }
-        }
-        imagePath3 {
           childImageSharp {
             sizes(maxWidth: 800, maxHeight: 600) {
               ...GatsbyImageSharpSizes_withWebp
