@@ -23,20 +23,20 @@ export const PortfolioItemTemplate = ({
               {title}
             </h1>
             <p>{description}</p>
-            {images.imagePath ? (
+            {images && images.imagePath ? (
               <Img
                 style={{ marginBottom: '3rem' }}
                 sizes={images.imagePath.childImageSharp.sizes}
                 title="ihihiuhiuh"
               />
             ) : null}
-            {images.imagePath2 ? (
+            {images && images.imagePath2 ? (
               <Img
                 style={{ marginBottom: '3rem' }}
                 sizes={images.imagePath2.childImageSharp.sizes}
               />
             ) : null}
-            {images.imagePath3 ? (
+            {images && images.imagePath3 ? (
               <Img
                 style={{ marginBottom: '3rem' }}
                 sizes={images.imagePath3.childImageSharp.sizes}
