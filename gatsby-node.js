@@ -74,7 +74,7 @@ exports.onCreateNode = ({
 
   if (node.internal.type === `MarkdownRemark`) {
     const prefix = '../../../static';
-    const { imagePath, imagePath2, imagePath3 } = node.frontmatter;
+    const { image, image2, image3 } = node.frontmatter;
     const newImagePath = prefix + node.frontmatter.image;
     const newImagePath2 = prefix + node.frontmatter.image2;
     const newImagePath3 = prefix + node.frontmatter.image3;
@@ -83,20 +83,22 @@ exports.onCreateNode = ({
       name: `imagePath`,
       value: newImagePath
     });
-    if (newImagePath2) {
+    if (image2) {
       createNodeField({
         node,
         name: `imagePath2`,
         value: newImagePath2
       });
     }
-    if (newImagePath3) {
+    if (image3) {
       createNodeField({
         node,
         name: `imagePath3`,
         value: newImagePath3
       });
     }
+
+    console.log(image, typeof image2, typeof image3);
 
     const { frontmatter } = node;
     if (frontmatter) {
