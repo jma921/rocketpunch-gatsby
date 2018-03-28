@@ -159,7 +159,7 @@ class Navbar extends React.Component {
   }
 }
 
-Navbar.PropTypes = {
+Navbar.propTypes = {
   path: PropTypes.string,
   hash: PropTypes.string
 };

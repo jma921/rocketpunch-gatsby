@@ -84,6 +84,7 @@ exports.onCreateNode = ({
       value: newImagePath
     });
     if (image2) {
+      console.log(image2);
       createNodeField({
         node,
         name: `imagePath2`,
@@ -91,14 +92,13 @@ exports.onCreateNode = ({
       });
     }
     if (image3) {
+      console.log(image3);
       createNodeField({
         node,
         name: `imagePath3`,
         value: newImagePath3
       });
     }
-
-    console.log(image, typeof image2, typeof image3);
 
     const { frontmatter } = node;
     if (frontmatter) {

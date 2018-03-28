@@ -79,7 +79,7 @@ const PortfolioCard = props => {
   );
 };
 
-PortfolioCard.PropTypes = {
+PortfolioCard.propTypes = {
   post: PropTypes.object
 };
 

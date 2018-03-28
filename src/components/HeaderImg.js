@@ -64,7 +64,7 @@ const HeaderImg = props => {
   );
 };
 
-HeaderImg.PropTypes = {
+HeaderImg.propTypes = {
   sizes: PropTypes.object
 };
 

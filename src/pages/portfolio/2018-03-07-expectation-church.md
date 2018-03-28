@@ -7,15 +7,3 @@ image: /img/expectation.jpg
 image2: /img/expectation2.jpg
 image3: /img/expectation3.jpg
 ---
-
-![Expectation Church logo](/img/expectation.jpg)
-
-### Logo
-
-![Expectation Church Letterhead](/img/expectation2.jpg)
-
-### Letterhead
-
-![Expectation Church card](/img/expectation3.jpg)
-
-### Invite Card

@@ -98,7 +98,7 @@ export default class IndexPage extends React.Component {
   }
 }
 
-IndexPage.PropTypes = {
+IndexPage.propTypes = {
   data: PropTypes.object
 };
 

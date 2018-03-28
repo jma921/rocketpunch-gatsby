@@ -12,6 +12,7 @@ export const PortfolioItemTemplate = ({
   images
 }) => {
   const PostContent = contentComponent || Content;
+  console.log(images);
   return (
     <section className="section">
       {helmet || ''}
@@ -41,9 +42,7 @@ export const PortfolioItemTemplate = ({
                 sizes={images.imagePath3.childImageSharp.sizes}
               />
             ) : null}
-            {/*
-              <PostContent content={content} />
-            */}
+            <PostContent content={content} />
           </div>
         </div>
       </div>
@@ -72,7 +71,21 @@ export const pageQuery = graphql`
       id
       html
       fields {
-        image {
+        imagePath {
+          childImageSharp {
+            sizes(maxWidth: 800, maxHeight: 600) {
+              ...GatsbyImageSharpSizes_withWebp
+            }
+          }
+        }
+        imagePath2 {
+          childImageSharp {
+            sizes(maxWidth: 800, maxHeight: 600) {
+              ...GatsbyImageSharpSizes_withWebp
+            }
+          }
+        }
+        imagePath3 {
           childImageSharp {
             sizes(maxWidth: 800, maxHeight: 600) {
               ...GatsbyImageSharpSizes_withWebp
