@@ -12,7 +12,6 @@ export const PortfolioItemTemplate = ({
   images
 }) => {
   const PostContent = contentComponent || Content;
-  console.log(images);
   return (
     <section className="section">
       {helmet || ''}
@@ -52,7 +51,6 @@ export const PortfolioItemTemplate = ({
 
 export default props => {
   const { markdownRemark: post } = props.data;
-  console.log(props);
   return (
     <PortfolioItemTemplate
       content={post.html}

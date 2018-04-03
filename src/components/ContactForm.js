@@ -7,19 +7,21 @@ function encode(data) {
 }
 
 class ContactForm extends Component {
-  state = {
-    fullName: '',
-    email: '',
-    message: '',
-    organizationName: '',
-    overview: '',
-    budget: '',
-    processing: false,
-    alertVisible: false,
-    success: false,
-    error: false,
-    errorMessage: ''
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      fullName: '',
+      email: '',
+      message: '',
+      organizationName: '',
+      overview: '',
+      processing: false,
+      alertVisible: false,
+      success: false,
+      error: false,
+      errorMessage: ''
+    };
+  }
   handleInputChange = event => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -73,7 +75,6 @@ class ContactForm extends Component {
   };
   resetForm = () => {
     this.setState({
-      budget: '',
       email: '',
       fullName: '',
       organizationName: '',
@@ -162,18 +163,6 @@ class ContactForm extends Component {
                 onChange={this.handleInputChange}
                 rows="5"
                 className="textarea"
-              />
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">Estimated Budget</label>
-            <div className="control">
-              <input
-                className="input"
-                onChange={this.handleInputChange}
-                name="budget"
-                value={this.state.budget}
-                type="text"
               />
             </div>
           </div>

@@ -1,0 +1,130 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders ContactForn component 1`] = `
+<div>
+  <form
+    action="/thanks/"
+    data-netlify="true"
+    data-netlify-honeypot="bot-field"
+    method="post"
+    name="contact"
+    onSubmit={[Function]}
+  >
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Full Name
+      </label>
+      <div
+        className="control"
+      >
+        <input
+          className="input"
+          name="fullName"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Organization Name
+      </label>
+      <div
+        className="control"
+      >
+        <input
+          className="input"
+          name="organizationName"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Email
+      </label>
+      <div
+        className="control"
+      >
+        <input
+          className="input"
+          name="email"
+          onChange={[Function]}
+          type="email"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Please provide a brief overview describing your work needed
+      </label>
+      <div
+        className="control"
+      >
+        <textarea
+          className="textarea"
+          name="overview"
+          onChange={[Function]}
+          rows="5"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <label
+        className="label"
+      >
+        Estimated Budget
+      </label>
+      <div
+        className="control"
+      >
+        <input
+          className="input"
+          name="budget"
+          onChange={[Function]}
+          type="text"
+          value=""
+        />
+      </div>
+    </div>
+    <div
+      className="field"
+    >
+      <div
+        className="control"
+      >
+        <button
+          className="button is-link"
+          type="submit"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
+  </form>
+  
+</div>
+`;

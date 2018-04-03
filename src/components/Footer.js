@@ -16,7 +16,7 @@ const Footer = () => {
         <div className="level-item">
           <a
             href="https://www.facebook.com/rocketpunchlabs/"
-            className="footer-social-link"
+            className="footer-social-link facebook-link"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -26,7 +26,7 @@ const Footer = () => {
         <div className="level-item">
           <a
             href="https://www.instagram.com/rocketpunchlabs/?hl=en"
-            className="footer-social-link"
+            className="footer-social-link instagram-link"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -35,7 +35,7 @@ const Footer = () => {
         </div>
         <div className="level-item">
           <a
-            className="footer-social-link"
+            className="footer-social-link twitter-link"
             href="https://twitter.com/rocketpunchlabs"
             target="_blank"
             rel="noopener noreferrer"
@@ -45,7 +45,7 @@ const Footer = () => {
         </div>
         <div className="level-item">
           <a
-            className="footer-social-link"
+            className="footer-social-link email-link"
             href="mailto:rocketpunchlabs@gmail.com?Subject=Hello%20from%20website"
             target="_blank"
             rel="noopener noreferrer"

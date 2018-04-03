@@ -3,12 +3,6 @@ import Img from 'gatsby-image';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-// const Image = styled(Img)`
-//   margin-top: -52px;
-//   display: inherit;
-//   height: 65vh;
-// `;
-
 const Image = styled(Img)`
   display: block;
   margin-top: -52px;
@@ -52,7 +46,7 @@ const Span = styled.span`
 
 const HeaderImg = props => {
   return (
-    <div>
+    <div className="headerImg">
       <Image sizes={props.sizes} />
       <Overlay>
         <Text>

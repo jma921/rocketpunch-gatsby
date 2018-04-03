@@ -12,7 +12,6 @@ const rocketLogo = require('../img/undraw_To_the_stars_qhyy.svg');
 
 export default class IndexPage extends React.Component {
   render() {
-    console.log(this.props);
     const { data } = this.props;
     const { edges: portfolio } = data.allMarkdownRemark;
 
