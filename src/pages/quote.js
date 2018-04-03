@@ -291,7 +291,7 @@ class Quote extends Component {
                   <input
                     className="input"
                     onChange={this.handleInputChange}
-                    name="budget"
+                    name="companyWebsite"
                     value={this.state.companyWebsite}
                     type="text"
                   />
@@ -301,7 +301,7 @@ class Quote extends Component {
                   <input
                     className="input"
                     onChange={this.handleInputChange}
-                    name="budget"
+                    name="companyName"
                     value={this.state.companyName}
                     type="text"
                   />
@@ -318,7 +318,7 @@ class Quote extends Component {
                     allowing me to learn more about you.
                   </p>
                   <textarea
-                    name="overview"
+                    name="companyDescription"
                     value={this.state.companyDescription}
                     onChange={this.handleInputChange}
                     rows="5"
@@ -344,7 +344,7 @@ class Quote extends Component {
                   <input
                     className="input"
                     onChange={this.handleInputChange}
-                    name="budget"
+                    name="companyNameSpelling"
                     value={this.state.companyNameSpelling}
                     type="text"
                   />
@@ -358,7 +358,7 @@ class Quote extends Component {
                   <input
                     className="input"
                     onChange={this.handleInputChange}
-                    name="budget"
+                    name="companyNameInspiration"
                     value={this.state.companyNameInspiration}
                     type="text"
                   />
@@ -373,7 +373,7 @@ class Quote extends Component {
                   <input
                     className="input"
                     onChange={this.handleInputChange}
-                    name="budget"
+                    name="companyNameMeaning"
                     value={this.state.companyNameMeaning}
                     type="text"
                   />
@@ -387,7 +387,7 @@ class Quote extends Component {
                   <input
                     className="input"
                     onChange={this.handleInputChange}
-                    name="budget"
+                    name="companyDescription"
                     value={this.state.companyDescription}
                     type="text"
                   />
