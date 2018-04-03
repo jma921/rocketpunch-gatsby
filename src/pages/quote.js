@@ -157,7 +157,7 @@ class Quote extends Component {
         <div className="section columns">
           <div className="column is-half is-offset-one-quarter">
             <form
-              name="contact"
+              name="quote"
               method="post"
               action="/thanks/"
               onSubmit={this.handleSubmit}
