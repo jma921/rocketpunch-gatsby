@@ -31,8 +31,8 @@ collections:
       - {label: "Description", name: "description", widget: "text"}
       - {label: "Body", name: "body", widget: "markdown", required: false}
       - {label: "Image1", name: "image", widget: "image"}
-      - {label: "Image2", name: "image2", widget: "image"}
-      - {label: "Image3", name: "image3", widget: "image"}
+      - {label: "Image2", name: "image2", widget: "image", required: false}
+      - {label: "Image3", name: "image3", widget: "image", required: false}
 
   - name: "pages"
     label: "Pages"

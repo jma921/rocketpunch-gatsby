@@ -27,6 +27,12 @@ class Quote extends Component {
     additionalInfo: '',
     additionalProducts: '',
     budget: '',
+    companyWebsite: '',
+    companyName: '',
+    companyNameMeaning: '',
+    companyNameInspiration: '',
+    companyDescription: '',
+    companyDescription5Words: '',
     dueDate: '',
     email: '',
     excludedDesigns: '',
@@ -100,9 +106,21 @@ class Quote extends Component {
   };
   resetForm = () => {
     this.setState({
+      processing: false,
+      alertVisible: false,
+      success: false,
+      error: false,
+      errorMessage: '',
+      startDate: moment(),
       additionalInfo: '',
       additionalProducts: '',
       budget: '',
+      companyWebsite: '',
+      companyName: '',
+      companyNameMeaning: '',
+      companyNameInspiration: '',
+      companyDescription: '',
+      companyDescription5Words: '',
       dueDate: '',
       email: '',
       excludedDesigns: '',
@@ -387,8 +405,8 @@ class Quote extends Component {
                   <input
                     className="input"
                     onChange={this.handleInputChange}
-                    name="companyDescription"
-                    value={this.state.companyDescription}
+                    name="companyDescription5Words"
+                    value={this.state.companyDescription5Words}
                     type="text"
                   />
                 </div>
