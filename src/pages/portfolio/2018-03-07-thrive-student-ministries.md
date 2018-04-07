@@ -6,6 +6,3 @@ description: Logo | Graphic Design
 image: /img/thrive2.jpg
 ---
 
-![Thrive Student Ministries](/img/thrive2.jpg)
-
-![Thrive Student](/img/thrive1.jpg)
