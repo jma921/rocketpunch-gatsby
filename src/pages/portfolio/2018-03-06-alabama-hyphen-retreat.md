@@ -6,6 +6,3 @@ description: Flyer | Graphic Design
 image: /img/arise.jpg
 ---
 
-![To be Alabama Hyphen Retreat](/img/tobe.jpg)
-
-# We did some stuff
