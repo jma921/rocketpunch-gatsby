@@ -6,4 +6,3 @@ description: Logo | Graphic Design
 image: /img/impact.jpg
 ---
 
-![Impact](/img/impact.jpg)
