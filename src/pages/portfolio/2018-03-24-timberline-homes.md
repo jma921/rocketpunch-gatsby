@@ -8,14 +8,3 @@ image2: /img/tl-inventory.png
 image3: /img/tl-contact.png
 ---
 
-![Timberline home page](/img/tl-homepage.png)
-
-### Home Page
-
-![Timberline inventory page](/img/tl-inventory.png)
-
-### Inventory Page
-
-![Timberline contact page](/img/tl-contact.png)
-
-### Contact Page
