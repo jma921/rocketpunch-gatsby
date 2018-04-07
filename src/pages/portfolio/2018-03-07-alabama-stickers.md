@@ -7,6 +7,3 @@ image: /img/sloss.jpg
 image2: /img/skylinesticker.jpg
 ---
 
-![Bham Logo](/img/sloss.jpg)
-
-![Bham Logo](/img/skylinesticker.jpg)
