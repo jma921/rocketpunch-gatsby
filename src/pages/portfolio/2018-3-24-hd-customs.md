@@ -6,6 +6,3 @@ description: Card | Graphic Design
 image: /img/hd-custom.jpg
 ---
 
-![HD Customs card](/img/hd-custom.jpg)
-
-### Card
